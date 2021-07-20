@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+<div id="app">
+    <h1>Hello App!</h1>
+    <p>
+        <!-- 页面会显示定义的template 和 传过去的params参数 -->
+        <router-link to="/user/foo">Go to Foo</router-link>
+        <router-link to="/user/bar">Go to Bar</router-link>
+    </p>
+    <!-- 路由出口 -->
+    <!-- 路由匹配到的组件将渲染在这里 -->
+    <router-view></router-view>
+</div>
+
+<script>
+
+    /**
+     * 测试   通过 $route.params 传参
+     *
+     *
+     * 模式	                                匹配路径	            $route.params
+     * /user/:id	                        /user/evan	            { id: 'evan' }
+     * /user/:username/post/:post_id	    /user/evan/post/123	    { username: 'evan', post_id: '123' }
+     *
+     *
+     * 路由其他熟悉 查看
+     * https://router.vuejs.org/zh/api/#%E8%B7%AF%E7%94%B1%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7
+     *
+     */
+    const User = {
+        template: '<div>User params.id: {{$route.params.id }} , ' +
+            'path:  {{$route.path}} , ' +
+            'fullPath:  {{$route.fullPath}} , ' +
+            'hash:  {{$route.hash}}</div>'
+    }
+    const router = new VueRouter({
+        routes: [
+            // 动态路径参数 以冒号开头
+            { path: '/user/:id', component: User }
+        ]
+    })
+
+    // 4. 创建和挂载根实例。
+    const app = new Vue({
+        router
+    }).$mount('#app')
+
+</script>
+</body>
+</html>
