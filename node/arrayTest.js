@@ -66,30 +66,125 @@ console.log(objectArray)
 
 //splice  截取array 并返回截取的元素, 会改变原有array
 console.log(array)
+
 console.log(array.splice(1, 2))
+
 console.log(array)
+
 console.log(array.splice(1, 2, 222))
+
 console.log(array)
 
 //slice 截取array 并返回截取的元素, 但不会改变原有array
 console.log(array.slice(1, 2))
+
 console.log(array)
 
 
 //indexOf  返回从指定位置开始 第一个匹配到a的  a的位置
 //如果不指定位置 默认从0开始
-console.log(array.indexOf(5,1))
+console.log(array.indexOf(5, 1))
 
 //lastIndexOf
 //如果不指定 默认从最后一个开始
 console.log(array.lastIndexOf(5))
 
 
+/**
+ * every 不会改变原始数组
+ *
+ * 如果数组中检测到有一个元素不满足，则整个表达式返回 false ，且剩余的元素不会再进行检测。
+ * 如果所有元素都满足条件，则返回 true。
+ *
+ * @param callBackFn 必填
+ * {
+ *     value : 必填 代表每个元素
+ *     index : 可选 代表当前元素的index
+ *     array : 可选 代表该数组
+ * }
+ *
+ * @param thisArg  可选
+ * 可以被 callBackFn 内部调用
+ */
+
+function checkItem(v) {
+    return v >= 1;
+}
+
+console.log(array.every(checkItem))
+//简化成lambda表达式
+let thisArg = 5
+console.log(array.every((v, index, arr) => {
+    console.log(index)
+    console.log(arr)
+    console.log(thisArg)
+    return v >= 1
+}), thisArg)
 
 
+/**
+ * some
+ */
+
+console.log(array.some((v) => v === 1))
+
+/**
+ * forEach
+ */
+
+array.forEach((v) => console.log(v))
+
+/**
+ * map  处理每个元素 并返回处理后的array
+ */
+let mapNumbers = array.map((v) => v + 1);
+console.log(mapNumbers)
+
+/**
+ * filter
+ */
+let filterNumbers = array.filter((v) => v > 1);
+console.log(filterNumbers)
+
+/**
+ * reduce
+ * previousValue:v1
+ * currentValue:v2
+ * initialValue: 初始值
+ * 如果填了初始值 previousValue就是 初始值,currentValue就是index0的值
+ * 如果没填初始值 previousValue就是 index0的值,currentValue就是index1的值
+ */
+console.log(array)
+let number = array.reduce((v1, v2) => {
+    console.log(v1)
+    console.log(v2)
+    return v1 + v2
+});
+console.log(number)
 
 
+let names = ['1', '2', '2', '3', '4'];
+
+let nameNum = names.reduce((pre, cur) => {
+    console.log(pre)
+    console.log(cur)
+    if (cur in pre) {
+        pre[cur]++
+    } else {
+        pre[cur] = 1
+    }
+    return pre
+}, {})
+console.log(nameNum); //{Alice: 2, Bob: 1, Tiff: 1, Bruce: 1}
 
 
-
-
+/**
+ * reduceRight  和reduce一样 只不过从右边开始
+ */
+console.log(array)
+let numberRight = array.reduceRight((v1, v2) => {
+    console.log(v1)
+    console.log(v2)
+    return v1 + v2
+});
+console.log(numberRight)
