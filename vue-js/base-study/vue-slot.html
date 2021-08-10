@@ -1,0 +1,37 @@
+<!--
+slot
+通过插槽,向一个组件传递内容
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <alert-box>
+        Something bad happened.
+    </alert-box>
+</div>
+<script>
+    Vue.component('alert-box', {
+        template: `
+    <div>
+      <strong>Error!</strong>
+      <slot></slot>
+    </div>
+  `
+    })
+
+    new Vue().$mount('#app')
+
+
+</script>
+</body>
+</html>

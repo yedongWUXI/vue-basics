@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue入门</title>
-    <script src="../vue.js"></script>
+    <script src="../../vue.js"></script>
 </head>
 <body>
 
-<h1>
-    <a name="hello-world" href="#hello-world">
-        Hello world!
-    </a>
-</h1>
-<anchored-heading :level="1">Hello world!</anchored-heading>
-
+<div id="app">
+    <h1>
+        <a name="hello-world" href="#hello-world">
+            Hello world!
+        </a>
+    </h1>
+    <anchored-heading :level="5">Hello world!</anchored-heading>
+</div>
 <script type="text/x-template" id="anchored-heading-template">
 
 
@@ -35,9 +36,10 @@
     <h6 v-else-if="level === 6">
         <slot></slot>
     </h6>
+
+
 </script>
 <script>
-
     Vue.component('anchored-heading', {
         template: '#anchored-heading-template',
         props: {
@@ -47,6 +49,7 @@
             }
         }
     })
+    new Vue().$mount('#app')
 
 </script>
 </body>
