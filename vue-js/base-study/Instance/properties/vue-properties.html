@@ -1,0 +1,70 @@
+<!--
+
+实例 property
+vm.$data            代理了 data 对象
+vm.$props
+vm.$el
+vm.$options
+vm.$parent
+vm.$root
+vm.$children
+vm.$slots
+vm.$scopedSlots
+vm.$refs
+vm.$isServer
+vm.$attrs
+vm.$listeners
+
+
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <h1>{{msg}}</h1>
+    <h2 ref='hello'>Hello</h2>
+    <h2 ref='vue'>Vue</h2>
+</div>
+
+<script>
+    let vm = new Vue({
+        el: 'div',
+        data: {
+            msg: 'taurus'
+        },
+        username: 'joey',
+        password: '123',
+        login() {
+            console.log("login");
+        }
+    });
+
+    /*$.data*/
+    console.log(vm.$data.msg);
+    console.log(vm.msg);
+
+    /*$el*/
+    console.log(vm.$el);
+    vm.$el.style.color = 'red';
+
+    /*$options*/
+    console.log(vm.$options.username);
+    console.log(vm.$options.password);
+    vm.$options.login();
+
+    /*$refs*/
+    console.log(vm.$refs);
+
+
+</script>
+</body>
+</html>

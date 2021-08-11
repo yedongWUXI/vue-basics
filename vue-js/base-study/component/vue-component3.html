@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue入门</title>
-    <script src="../../vue.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
 <!--父组件通过属性的方式向子组件传递内容  比如  :index
@@ -15,10 +15,6 @@
         <button @click="handleSubmit">提交</button>
     </div>
     <ul>
-        <!--<li v-for="(item,index) of list" :key="index">-->
-            <!--{{item}}-->
-        <!--</li>-->
-        <!--父组件向子组件传值，通过属性得形式，比如content1111-->
         <todo-item
                 v-for="(item,index) of list"
                 :key="index"
@@ -26,7 +22,6 @@
                 :index="index"
                 @delete="handleDelete"
         >
-
         </todo-item><!--//这个是父组件-->
     </ul>
 
@@ -46,7 +41,6 @@
         template:'<li @click="handleClick">{{content1111}}</li>',
         methods:{
             handleClick:function () {
-//                alert("clicked")
                 this.$emit('delete',this.index)
             }
         }

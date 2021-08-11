@@ -1,15 +1,5 @@
 <!--
 
-触发当前实例上的事件。附加参数都会传给监听器回调。
-
-参数：
-
-{string} eventName
-[...args]
-
-
-示例：
-
 配合额外的参数使用 $emit
 
 -->
@@ -18,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue入门</title>
-    <script src="../../vue.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
 
@@ -29,7 +19,7 @@
 
 
     Vue.component('magic-eight-ball', {
-        data: function () {
+        data: function () {//定义一个回调属性 供$emit使用
             return {
                 possibleAdvice: ['Yes', 'No', 'Maybe']
             }

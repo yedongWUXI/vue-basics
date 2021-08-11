@@ -1,0 +1,43 @@
+<!--
+
+用法:
+绑定事件监听器
+
+语法糖:
+v-on  ==>  @
+
+v-on后面跟的不止是click事件也可以是其他的事件，用法均相似。比如：v-on:click/mouseout/mouseover/mousedown.......
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <div @click="handleClick">{{msg}}</div>
+</div>
+
+
+<script>
+
+    new Vue({
+        el: "#app",
+        data: {
+            msg: "hello vue"
+        },
+        methods: {
+            handleClick: function () {
+                this.msg = "hu xiao dan"
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

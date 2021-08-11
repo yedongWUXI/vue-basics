@@ -1,0 +1,41 @@
+<!--
+$on     监听事件
+$emit   触发事件  附加参数会传给监听器回调
+
+注:一般用来vue非父子组件之间传递数据
+
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{ message }}
+</div>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+
+    vm.$on('test', function (msg) {
+        alert(msg)
+    })
+    vm.$emit('test', 'hi')
+
+
+
+</script>
+</body>
+</html>

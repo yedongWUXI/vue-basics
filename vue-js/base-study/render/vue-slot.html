@@ -1,19 +1,20 @@
+<!--
+功能：通过 level prop 动态生成标题 (heading) 的组件
+
+这里用模板并不是最好的选择：不但代码冗长，而且在每一个级别的标题中重复书写了 <slot></slot>，在要插入锚点元素时还要再次重复
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Vue入门</title>
-    <script src="../../vue.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
 
 <div id="app">
-    <h1>
-        <a name="hello-world" href="#hello-world">
-            Hello world!
-        </a>
-    </h1>
-    <anchored-heading :level="5">Hello world!</anchored-heading>
+    <anchored-heading :level="2">Hello world!</anchored-heading>
 </div>
 <script type="text/x-template" id="anchored-heading-template">
 
