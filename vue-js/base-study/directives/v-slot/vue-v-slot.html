@@ -1,0 +1,67 @@
+<!--
+
+具名插槽
+
+在 2.6.0 中，vue为具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)。
+目前 slot 与 slot-scope 这两个特性暂时还未被移除。
+
+语法糖：
+v-slot ==>  #
+
+
+v-slot 指令只能写在 template 标签中
+
+
+
+自感悟：
+在 组件标签使用中 定义<template>  我把这个称为 "宝石"
+在组件定义中  定义<slot>  我把这个称为"插槽"
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <!-- 老版本使用具名插槽 -->
+    <lv-hello>
+        <p slot="header">我是头部</p>
+    </lv-hello>
+    <!-- 新版本使用具名插槽 -->
+    <lv-hello>
+        <!-- 注意： v-slot 指令只能写在 template 标签中 -->
+        <template #header>
+            <p>我是头部</p>
+        </template>
+    </lv-hello>
+</div>
+
+<script>
+
+
+    Vue.component('lv-hello', {
+        template: `
+    <div>
+
+      <h1>我的天呀</h1>
+      <h1>我的天呀</h1>
+<!--      <slot name="header"></slot>-->
+      <h1>我的天呀</h1>
+
+    </div>
+  `
+    })
+
+    new Vue({
+        el: "#app"
+    })
+
+</script>
+</body>
+</html>

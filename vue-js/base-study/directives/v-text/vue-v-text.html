@@ -1,6 +1,6 @@
 <!--
 用途:
-属性动态绑定
+数据绑定
 
 语法糖:
 v-bind  ==>  :
@@ -19,14 +19,15 @@ v-bind  ==>  :
 <body>
 
 <div id="app">
-    <div :title="msg">title属性是HTML核心属性，用于指定元素的提示文本。</div>
+    <div>{{msg}}</div>
+    <div v-text="msg"></div><!--效果是一样的  一般直接用上面的 Mustache(双大括号) 语法-->
 </div>
 
 <script>
     new Vue({
         el: "#app",
         data: {
-            msg: "鼠标放上来 就能看到title提示了"
+            msg: "数据绑定最常见的形式就是使用“Mustache”语法 (双大括号) 的文本插值"
         }
     })
 </script>

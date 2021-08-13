@@ -1,0 +1,61 @@
+<!--
+
+作用域插槽:
+让插槽的内容能够访问子组件中才有的数据
+
+
+
+
+
+
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <!-- 老版本使用具名插槽 -->
+    <lv-hello>
+        <p slot="header">我是头部</p>
+    </lv-hello>
+    <!-- 新版本使用具名插槽 -->
+    <lv-hello>
+        <!-- 注意：这块的 v-slot 指令只能写在 template 标签上面，而不能放置到 p 标签上 -->
+        <template #header="item">
+            <p>我是头部 {{item.firstName}}{{item.lastName}}</p>
+        </template>
+    </lv-hello>
+</div>
+
+<script>
+
+
+    Vue.component('lv-hello', {
+        data: function () {
+            return {
+                firstName: '张',
+                lastName: '三'
+            }
+        },
+        template: `
+    <div>
+      <slot name="header" :firstName="firstName" :lastName="lastName"></slot>
+      <h1>我的天呀</h1>
+    </div>
+  `
+    })
+
+    new Vue({
+        el: "#app"
+    })
+
+</script>
+</body>
+</html>

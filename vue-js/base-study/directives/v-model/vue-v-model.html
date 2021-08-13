@@ -1,0 +1,42 @@
+<!--
+
+用法:
+在表单控件或者组件上创建双向绑定
+
+使用范围:
+<input>
+<select>
+<textarea>
+components
+
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <input v-model="msg">
+    <p>hello {{msg}}</p>
+</div>
+
+
+<script>
+
+    new Vue({
+        el: "#app",
+        data: {
+            msg: ""
+        }
+    })
+
+</script>
+</body>
+</html>
