@@ -1,0 +1,52 @@
+<!--
+Vue.component  参数之  data
+
+
+组件可以进行任意次数的复用
+你每用一次组件，就会有一个它的新实例被创建
+
+下面这个例子：
+注意当点击一个按钮时, count不会联动。因为每个组件新实例被创建后,都会各自独立维护它的 count
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="components-demo">
+    <button-counter ref="testRef"></button-counter>
+    <button @click="getTest">测试组件里的ref</button>
+    <button-counter></button-counter>
+</div>
+<script>
+    /**
+     * 组件使用方式  1.创建组件  2.挂载组件
+     */
+    //1.创建组件
+    Vue.component('button-counter', {
+        data: ()=> {//data 必须是一个函数(如果 Vue 没有这条规则,这个例子的按钮计数就不会独立,会联动)
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+    //2.挂载组件
+    //以下两种挂载方式都可以
+       new Vue({ el: '#components-demo',
+           methods: {
+               getTest: function () {
+                   console.log(this.$refs.testRef.count)
+               }
+           }})
+    // new Vue().$mount('#components-demo')
+
+</script>
+</body>
+</html>

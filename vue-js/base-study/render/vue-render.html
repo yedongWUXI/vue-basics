@@ -1,5 +1,20 @@
 <!--
-通过render改造
+把 vue-slot.html  通过render改造
+
+
+render：
+Vue 推荐在绝大多数情况下使用模板来创建你的 HTML。然而在一些场景中，
+你真的需要 JavaScript 的完全编程的能力。
+这时你可以用render(渲染函数)，它比模板更接近编译器。
+
+
+搜索 "渲染函数 & JSX"  查看
+
+查看笔记：
+createElement
+Babel 插件
+将 h 作为 createElement 的别名
+
 
 -->
 <!DOCTYPE html>
@@ -21,12 +36,10 @@
 </div>
 <script>
     Vue.component('anchored-heading', {
-        render: function (createElement) {
-            return createElement(
+        render: (createElement) => createElement(
                 'h' + this.level,   // 标签名称
                 this.$slots.default // 子节点数组
-            )
-        },
+            ),
         props: {
             level: {
                 type: Number,

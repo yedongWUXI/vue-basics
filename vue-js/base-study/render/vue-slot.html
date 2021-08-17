@@ -1,5 +1,5 @@
 <!--
-功能：通过 level prop 动态生成标题 (heading) 的组件
+功能：通过 level等级 动态生成 <h>标签
 
 这里用模板并不是最好的选择：不但代码冗长，而且在每一个级别的标题中重复书写了 <slot></slot>，在要插入锚点元素时还要再次重复
 -->
@@ -14,11 +14,10 @@
 <body>
 
 <div id="app">
-    <anchored-heading :level="2">Hello world!</anchored-heading>
+    <anchored-heading :level="6">Hello world!</anchored-heading>
 </div>
-<script type="text/x-template" id="anchored-heading-template">
 
-
+<div id="anchored-heading-template">
     <h1 v-if="level === 1">
         <slot></slot>
     </h1>
@@ -37,9 +36,8 @@
     <h6 v-else-if="level === 6">
         <slot></slot>
     </h6>
+</div>
 
-
-</script>
 <script>
     Vue.component('anchored-heading', {
         template: '#anchored-heading-template',

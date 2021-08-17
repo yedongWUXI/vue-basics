@@ -1,19 +1,8 @@
 <!--
 
-使用ref  获取本页面的dom元素
-(打开console查看)
+验证：
+ref如果用在子组件上，引用就指向组件实例
 
-
-ref
-预期：string
-
-ref 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 $refs 对象上。
-如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；
-
-
-
--- 这个vue是用来测试这个的  但是还没想到该怎么写-----？？？
-如果用在子组件上，引用就指向组件实例
 
 -->
 <!DOCTYPE html>
@@ -26,21 +15,26 @@ ref 被用来给元素或子组件注册引用信息。引用信息将会注册�
 <body>
 
 <div id="app">
-    <div ref="testDom">11111</div>
-    <!--获取本页面的dom元素-->
-    <button @click="getTest">获取test节点</button>
+    <button-counter ref="testRef"></button-counter>
+    <button @click="getTest">通过ref 获取组件里的属性</button>
 </div>
-
 <script>
+    Vue.component('button-counter', {
+        data: () => {
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
     new Vue({
-        el: "#app",
+        el: '#app',
         methods: {
-            getTest: function () {
-                console.log(this.$refs.testDom)
-
+            getTest() {
+                alert(this.$refs.testRef.count)
             }
         }
-    });
+    })
 
 </script>
 </body>
