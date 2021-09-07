@@ -1,0 +1,56 @@
+<!--
+https://router.vuejs.org/zh/guide/advanced/navigation-guards.html
+
+“导航”表示路由正在发生改变
+vue-router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。
+有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的。
+
+
+
+全局前置守卫
+const router = new VueRouter({ ... })
+
+router.beforeEach((to, from, next) => {
+  // ...
+})
+
+全局解析守卫
+router.beforeResolve
+
+
+全局后置钩子
+router.afterEach((to, from) => {
+  // ...
+})
+
+
+路由独享的守卫
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/foo',
+      component: Foo,
+      beforeEnter: (to, from, next) => {
+        // ...
+      }
+    }
+  ]
+})
+
+
+
+组件内的守卫
+beforeRouteEnter
+beforeRouteUpdate (2.2 新增)
+beforeRouteLeave
+
+
+
+
+
+
+
+
+
+
+-->

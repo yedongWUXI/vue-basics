@@ -1,5 +1,9 @@
 <!--
-嵌套路由
+监听路由
+1.使用watch
+2.使用beforeRouteUpdate   (导航守卫)
+
+
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +37,14 @@
       <h2>User</h2>
       <router-view></router-view>
     </div>
-  `
+  `,
+        beforeRouteUpdate(to, from, next) {
+            console.log(to)
+            console.log(from)
+            next()
+            // react to route changes...
+            // don't forget to call next()
+        }
     }
     const UserProfile = {template: '<div>UserProfile</div>'}
     const UserPosts = {template: '<div>UserPosts</div>'}
