@@ -16,9 +16,9 @@ vue的无缝滚动插件
 
 <div id="app">
     <vue-seamless-scroll :data="listData" class="seamless-warp">
-        <ul class="item">
+        <ul>
             <li v-for="item in listData">
-                <span class="title" v-text="item.title"></span><span class="date" v-text="item.date"></span>
+                <span  v-text="item.title"></span><span v-text="item.date"></span>
             </li>
         </ul>
     </vue-seamless-scroll>
