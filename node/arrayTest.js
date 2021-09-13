@@ -61,7 +61,7 @@ console.log(objectArray)
 
 
 /**
- * splice 和 slice的区别
+ * splice 和 slice 的区别
  */
 
 //splice  截取array 并返回截取的元素, 会改变原有array
