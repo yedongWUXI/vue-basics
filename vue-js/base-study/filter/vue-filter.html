@@ -1,0 +1,53 @@
+<!--
+Vue.js 允许你自定义过滤器，可被用于一些常见的文本格式化。
+过滤器可以用在两个地方：双花括号插值和 v-bind 表达式 (后者从 2.1.0+ 开始支持)。
+由'管道符号'表示：|
+
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <input v-model="message"/>
+    <br>
+    {{ message| filterOne}}
+    <br>
+    <!--过滤器可以串联：-->
+    {{ message| filterOne|filterTwo}}
+</div>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue!'
+        },
+        filters: {
+            filterOne(value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.toUpperCase()
+            },
+            filterTwo(value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.slice(3)
+            }
+        }
+    })
+
+</script>
+
+
+</body>
+</html>
