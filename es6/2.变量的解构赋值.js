@@ -1,12 +1,18 @@
 // ES6 允许按照一定模式从数组和对象中提取值 对变量进行赋值 ->被称为解构赋值
 
 // 1.数组的解构赋值
-const F4 = ['小沈阳', '刘能', '赵四', '宋小宝']
-let [xiao, liu, zhao, song] = F4
-console.log(xiao)
-console.log(liu)
-console.log(zhao)
-console.log(song)
+let F4 = ['小沈阳', '刘能', '赵四', '宋小宝']
+let F5 = []
+F5= F4
+F5[0]= "sdfdfds"
+// console.log(xiao)
+// console.log(liu)
+// console.log(zhao)
+// console.log(song)
+
+// console.log(F4)
+console.log(F4)
+
 
 // 对象的解构
 const person = {
@@ -33,9 +39,8 @@ console.log(test)
 */
 
 
-//例子：修改test里的属性,person里的属性也会跟着变
+//例子：修改test里的属性,person里的属性也会跟着变。因为用了“=”,指向了同一个内存地址
 test.name = '张三'
-
 console.log(person)
 
 //可以使用重新new一个对象 来解决浅拷贝

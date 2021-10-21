@@ -33,3 +33,57 @@ console.log(result)
 //  2)省略花括号 当代码只有一条语句的时候 return也要省略 语句的执行结果就是函数的返回值
 // let pow = (n) => n * n
 // let pow = n=> n * n
+
+
+
+
+
+/*
+* ===================================>>>>>箭头函数练习
+*
+* */
+
+
+let data = [
+    {
+        name:"zs",
+        age:18,
+        className:"三年四班",
+        high:"180",
+    },
+    {
+        name:"ls",
+        age:13,
+        className:"三年四班",
+        high:"150",
+    },
+    {
+        name:"ww",
+        age:11,
+        className:"三年四班",
+        high:"130",
+    },
+    {
+        name:"zl",
+        age:8,
+        className:"二年四班",
+        high:"110",
+    },
+    {
+        name:"ad",
+        age:28,
+        className:"五年四班",
+        high:"180",
+    }
+]
+
+
+
+let filter = data.filter(v=>v.age<15);
+
+console.log(filter)
+
+let map = data.map(v=>v.age);
+
+console.log(map)
+

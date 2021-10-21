@@ -155,6 +155,7 @@ console.log(filterNumbers)
  * 如果没填初始值 previousValue就是 index0的值,currentValue就是index1的值
  */
 console.log(array)
+console.log("=====================")
 let number = array.reduce((v1, v2) => {
     console.log(v1)
     console.log(v2)
