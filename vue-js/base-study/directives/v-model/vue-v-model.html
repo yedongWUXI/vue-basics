@@ -24,7 +24,8 @@ components
 
 <div id="app">
     <input v-model="msg">
-    <p>hello {{msg}}</p>
+    <input v-model="msg2">
+    <p>hello {{msg+msg2}}</p><!--可以在{{}}里使用变量关系符-->
 </div>
 
 
@@ -33,7 +34,8 @@ components
     new Vue({
         el: "#app",
         data: {
-            msg: ""
+            msg: "",
+            msg2: ""
         }
     })
 

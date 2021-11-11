@@ -1,7 +1,9 @@
 <!--
-slot
-通过插槽,向一个组件传递内容
+slot  ==> 插槽
 
+这里使用的是 具名插槽
+
+组件<alert-box> 包裹的 <h1>Something bad happened.</h1> 作为宝石 传进了 匿名插槽 slot里
 
 -->
 
@@ -16,7 +18,8 @@ slot
 
 <div id="app">
     <alert-box>
-        Something bad happened.
+        <h1 slot="yedong">Something bad happened.</h1>
+        <h1 slot="xxxx">这个是名字叫xxxx的宝石</h1>
     </alert-box>
 </div>
 <script>
@@ -24,7 +27,9 @@ slot
         template: `
     <div>
       <strong>Error!</strong>
-      <slot></slot>
+      <slot name="yedong"></slot>
+      <strong>Error!</strong>
+      <slot name="xxxx"></slot>
     </div>
   `
     })

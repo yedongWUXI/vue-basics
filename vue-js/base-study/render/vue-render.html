@@ -10,10 +10,7 @@ Vue 推荐在绝大多数情况下使用模板来创建你的 HTML。然而在�
 
 搜索 "渲染函数 & JSX"  查看
 
-查看笔记：
-createElement
-Babel 插件
-将 h 作为 createElement 的别名
+查看印象笔记："vue中的render函数介绍"
 
 
 -->
@@ -27,19 +24,16 @@ Babel 插件
 <body>
 
 <div id="app">
-    <h1>
-        <a name="hello-world" href="#hello-world">
-            Hello world!
-        </a>
-    </h1>
     <anchored-heading :level="1">Hello world!</anchored-heading>
 </div>
 <script>
     Vue.component('anchored-heading', {
-        render: (createElement) => createElement(
+        render: function (createElement) {
+            return createElement(
                 'h' + this.level,   // 标签名称
                 this.$slots.default // 子节点数组
-            ),
+            )
+        },
         props: {
             level: {
                 type: Number,

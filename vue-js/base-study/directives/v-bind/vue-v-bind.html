@@ -19,14 +19,16 @@ v-bind  ==>  :
 <body>
 
 <div id="app">
-    <div :title="msg">title属性是HTML核心属性，用于指定元素的提示文本。</div>
+    <div title="{{msg}}}">title属性是HTML核心属性，用于指定元素的提示文本。</div>
+    <input value="{{msg}}}">title属性是HTML核心属性，用于指定元素的提示文本。</input>
 </div>
 
 <script>
     new Vue({
         el: "#app",
         data: {
-            msg: "鼠标放上来 就能看到title提示了"
+            msg: "鼠标放上来 就能看到title提示了",
+            msg2: "333"
         }
     })
 </script>

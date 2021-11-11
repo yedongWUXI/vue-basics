@@ -1,0 +1,39 @@
+<!--
+slot  ==> 插槽
+
+这里使用的是 匿名插槽
+
+组件<alert-box> 包裹的 <p>Something bad happened.</p> 作为宝石 传进了 匿名插槽 slot里
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <alert-box>
+        <p>Something bad happened.</p>
+    </alert-box>
+</div>
+<script>
+    Vue.component('alert-box', {
+        template: `
+    <div>
+      <strong>Error!</strong>
+      <slot></slot>
+    </div>
+  `
+    })
+
+    new Vue().$mount('#app')
+
+
+</script>
+</body>
+</html>
