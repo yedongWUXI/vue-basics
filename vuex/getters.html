@@ -1,0 +1,48 @@
+<!--
+
+将组件中经常使用的computed都放到getters里面来操作
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <h1>{{num}}</h1>
+</div>
+<script>
+    //在全局定义一个存储vuex
+    const store = new Vuex.Store({
+        // state相当于组件中的data，专门用来存放全局的数据
+        state: {
+            num: 0
+        },
+        // getters相当于组件中的computed，getters是全局的，computed是组件内部使用的
+        getters: {
+            getNum(state) {
+                return state.num//这里可以做多种逻辑操作,将那些"经常使用的computed操作"都放到getters里面来操作！！
+            }
+        },
+        mutations: {},
+        actions: {},
+        modules: {}
+    });
+    //在内部 使用computed做缓存
+    new Vue({
+        el: '#app',
+        computed: {
+            num(){
+                return store.getters.getNum
+            }
+        }
+    });
+</script>
+</body>
+</html>

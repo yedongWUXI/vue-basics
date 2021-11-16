@@ -1,0 +1,53 @@
+<!--
+首先我们知道在vue中，数据的绑定都不用我们操心，
+例如在data中有一个msg的变量，你修改它，那么在页面上，msg的内容就会自动发生变化。
+但是如果对于一个复杂的对象，例如一个对象数组，你直接去给数组上某一个元素增加属性，或者直接把数组的length变成0，vue就无法知道发生了改变。
+
+$forceUpdate 强制刷新，适用于像数组或者对象改变的时候，视图没有更新的情况。不是刷新整个组件。
+
+调用$forceUpdate后会触发beforeUpdate和updated这两个钩子函数，不会触发其他钩子函数。
+
+
+使用场景：
+1.如果在vue的data中没有进行声明，给没声明的属性赋值（即非响应式的），不会引起vue实例的重新渲染。
+2.数据层次太多， 数据修改了，但页面没有重新渲染；
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <button @click="addList">增加list</button>
+    <li v-for="(item, i) in list" :key="item.id">
+        <input type="checkbox"> {{item.name}}
+    </li>
+    <p>--------------------------------</p>
+    <li v-for="(item, i) in list" :key="item.id">
+        <input type="checkbox"> {{item.father}}
+    </li>
+</div>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            list:[{name:"张三",age:18},{name:"李四",age:18},{name:"王五",age:18},{name:"赵六",age:18}]
+        },
+        methods:{
+            addList(){
+                // this.list.length=0
+                this.list[1].father="赵日天"
+                this.$forceUpdate()
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

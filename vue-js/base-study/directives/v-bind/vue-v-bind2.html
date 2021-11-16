@@ -25,8 +25,7 @@ ps:双大括号只能在标签内容里使用（<>{{  }}</>）,不能在标签�
 <body>
 
 <div id="app">
-    <div :title="msg">鼠标放上来</div>
-    <div title="{{msg}}">鼠标放上来</div><!--这么写是错的,看ps注释-->
+    <div :title="getMsg()">鼠标放上来</div>
 </div>
 
 <script>
@@ -34,6 +33,11 @@ ps:双大括号只能在标签内容里使用（<>{{  }}</>）,不能在标签�
         el: "#app",
         data: {
             msg: "title属性是HTML核心属性，用于指定元素的提示文本。"
+        },
+        methods:{
+            getMsg(){
+                return "v-bind还能绑定method"
+            }
         }
     })
 </script>

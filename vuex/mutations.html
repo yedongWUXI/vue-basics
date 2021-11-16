@@ -1,0 +1,61 @@
+<!--
+
+更改 Vuex 的 store 中的状态的**唯一方法**是提交 mutation
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <button @click="addFn()">点击加1 ==> {{num}}</button>
+</div>
+<script>
+    //在全局定义一个存储vuex
+    const store = new Vuex.Store({
+        // state相当于组件中的data，专门用来存放全局的数据
+        state: {
+            num: 0
+        },
+        // getters相当于组件中的computed，getters是全局的，computed是组件内部使用的
+        getters: {
+            getNum(state) {
+                return state.num
+            }
+        },
+        // mutations相当于组件中的methods，但是它不能使用异步方法（定时器、axios）
+        mutations: {
+            // 让num累加
+            increase(state, payload) {
+                state.num += payload ? payload : 1;
+            }
+        },
+        actions: {},
+        modules: {}
+    });
+    //在内部 使用computed做缓存
+    new Vue({
+        el: '#app',
+        computed: {
+            num() {
+                return store.getters.getNum
+            }
+        },
+        methods: {
+            addFn() {
+                // 调用store中的mutations里的increase方法
+                // 传参的话，使用payload
+                store.commit('increase', 1)
+            }
+        }
+    });
+</script>
+</body>
+</html>
