@@ -1,0 +1,58 @@
+<!--
+
+Vue.delete( target, propertyName/index )
+参数：
+{Object | Array} target
+{string | number} propertyName/index
+
+用法：
+删除对象的 property。如果对象是响应式的，确保删除能触发更新视图。
+
+这个方法主要用于避开 Vue 不能检测到 property 被删除的限制，但是你应该很少会使用它。
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <p v-for="item in items" :key="item.id">
+        {{item.message}}
+    </p>
+    <button class="btn" @click="btn2Click()">删除一行</button>
+</div>
+
+
+<script>
+
+
+    new Vue({
+        el: "#app",
+        data: {
+            items: [
+                {message: "Test one", id: "1"},
+                {message: "Test two", id: "2"},
+                {message: "Test three", id: "3"}
+            ]
+        },
+        methods: {
+            btn2Click() {
+                Vue.delete(this.items, 0)
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

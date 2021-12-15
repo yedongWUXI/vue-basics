@@ -42,8 +42,13 @@ $forceUpdate 强制刷新，适用于像数组或者对象改变的时候，视�
         methods:{
             addList(){
                 // this.list.length=0
+
+                //解决办法一;不推荐因为消耗性能
                 this.list[1].father="赵日天"
                 this.$forceUpdate()
+
+                // 解决方法二：注意要引入Vue   (import Vue from "vue")
+                // Vue.set(this.list,1,{name:"李四",age:18,father:"赵日天"})
             }
         }
     })

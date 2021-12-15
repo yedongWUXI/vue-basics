@@ -1,0 +1,55 @@
+<!--
+用法：
+
+在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <button  @click="click()" ref="aa">{{message}}</button>
+</div>
+
+
+<script>
+
+    /**
+     * vue绑定 div
+     *
+     *
+     */
+
+
+    new Vue({
+        el: '#app',
+        data: {
+            message: '原始值'
+        },
+        methods: {
+            click() {
+                this.message = "修改后的值";
+                console.log(this.$refs.aa.innerText);   //that.$refs.aa获取指定DOM，输出：原始值
+
+                this.$nextTick( () => {
+                    console.log(this.$refs.aa.innerText);  //输出：修改后的值
+                });
+            }
+        }
+    })
+
+
+</script>
+
+
+</body>
+</html>

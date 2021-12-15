@@ -1,0 +1,38 @@
+<!--
+随着组件的细化，很多时候都需要处理组件状态共享的情况， Vuex可以轻松解决这类问题.
+就像 Vuex官方文档所说的，如果应用不够大，为避免代码繁琐冗余，最好不要使用它.
+vue.js 2.6 新增了 Observable API ，通过使用这个 api 可以应对一些简单的跨组件数据状态共享的情况。
+
+总结：
+体量比vuex小，使用维护成本相对较低
+用于数据共享，当十几个组件同时共用一套数据时候，把数据独立抽离出来，方便维护也可以实现多个组件之间数据的共享和更新
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+</div>
+
+
+<script>
+
+
+    new Vue({
+        el: "#app"
+    });
+
+
+</script>
+
+
+</body>
+</html>

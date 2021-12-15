@@ -1,0 +1,47 @@
+<!--
+Vue.component  参数之  props
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="blog-post-demo">
+    <blog-post
+            v-for="post in posts"
+            v-bind:key="post.id"
+            v-bind:title="post.title"
+            v-bind:text="post.text"
+    ></blog-post>
+</div>
+<script>
+    /**
+     * 组件使用方式  1.创建组件  2.挂载组件
+     */
+    //1.创建组件
+    Vue.component('blog-post', {
+        props: ['title','text'],   //这种写法是默认写法 但可能会缺少组件使用的校验。
+        template: '<h3>{{ title }},{{ text }}</h3>'
+    })
+
+    //2.挂载组件
+    new Vue({
+        el: '#blog-post-demo',
+        data: {
+            posts: [
+                {id: 1, title: 'My journey with Vue',text: '2222'},
+                {id: 2, title: 'Blogging with Vue',text: '2222'},
+                {id: 3, title: 'Why Vue is so fun',text: '2222'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

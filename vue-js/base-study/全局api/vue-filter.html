@@ -1,0 +1,54 @@
+<!--
+参数：
+{string} id
+{Function} [definition]
+
+用法：
+注册或获取全局过滤器。
+
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <p v-for="item in items" :key="item.id">
+        {{item.message|globalFilter}}
+    </p>
+</div>
+
+
+<script>
+
+    // 注册一个全局过滤器
+    Vue.filter('globalFilter', function (value) {
+        return  value + " filter";
+    });
+
+
+    new Vue({
+        el: "#app",
+        data: {
+            items: [
+                {message: "Test one", id: "1"},
+                {message: "Test two", id: "2"},
+                {message: "Test three", id: "3"}
+            ]
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

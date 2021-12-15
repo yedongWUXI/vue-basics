@@ -1,0 +1,55 @@
+<!--
+用法：
+
+向响应式对象中添加一个 property，并确保这个新 property 同样是响应式的，且触发视图更新。
+
+注：
+和$forceUpdate同理  可以参考
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <p v-for="item in items" :key="item.id">
+        {{item.message}}
+    </p>
+    <button class="btn" @click="btn2Click()">动态赋值</button>
+</div>
+
+
+<script>
+
+
+    new Vue({
+        el: "#app",
+        data: {
+            items: [
+                {message: "Test one", id: "1"},
+                {message: "Test two", id: "2"},
+                {message: "Test three", id: "3"}
+            ]
+        },
+        methods: {
+            btn2Click() {
+                // this.items[0] = {message: "Change Test", id: "10"}       //不生效
+                Vue.set(this.items, 0, {message: "Change Test", id: '10'})
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>
