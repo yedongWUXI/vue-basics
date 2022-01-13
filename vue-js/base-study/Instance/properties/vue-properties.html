@@ -48,20 +48,24 @@ vm.$listeners
         }
     });
 
-    /*$.data*/
+    /*$data*/
+    console.log("$data ====================")
     console.log(vm.$data.msg);
     console.log(vm.msg);
 
     /*$el*/
+    console.log("$el =======================")
     console.log(vm.$el);
     vm.$el.style.color = 'red';
 
     /*$options*/
+    console.log("$options ================")
     console.log(vm.$options.username);
     console.log(vm.$options.password);
     vm.$options.login();
 
     /*$refs*/
+    console.log("$refs ===================")
     console.log(vm.$refs);
 
 

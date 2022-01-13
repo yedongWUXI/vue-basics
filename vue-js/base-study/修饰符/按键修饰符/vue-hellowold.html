@@ -1,0 +1,71 @@
+<!--
+按键修饰符
+在监听键盘事件时，我们经常需要检查详细的按键。Vue 允许为 v-on 在监听键盘事件时添加按键修饰符：
+
+
+.enter
+.tab
+.delete (捕获“删除”和“退格”键)
+.esc
+.space
+.up
+.down
+.left
+.right
+
+
+键盘按键数值对照表：
+https://blog.csdn.net/han_ying_ying/article/details/46636695
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <p>enter键:</p>
+    <input @keyup.enter ="submit">
+    <p>tab键:</p>
+    <input @keyup.tab   ="submit">
+    <p>delete键:</p>
+    <input @keyup.delete="submit">
+    <p>esc键:</p>
+    <input @keyup.esc   ="submit">
+    <p>space键:</p>
+    <input @keyup.space ="submit">
+    <p>up键:</p>
+    <input @keyup.up    ="submit">
+    <p>down键:</p>
+    <input @keyup.down  ="submit">
+    <p>left键:</p>
+    <input @keyup.left  ="submit">
+    <p>right键:</p>
+    <input @keyup.right ="submit">
+</div>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        },
+        methods:{
+            submit(){
+                alert("触发")
+            }
+        }
+    })
+
+</script>
+
+
+</body>
+</html>

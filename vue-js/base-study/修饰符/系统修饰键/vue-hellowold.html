@@ -1,0 +1,55 @@
+<!--
+
+系统修饰键
+.ctrl
+.alt
+.shift
+.meta
+
+
+键盘按键数值对照表：
+https://blog.csdn.net/han_ying_ying/article/details/46636695
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <p>按下Alt + 释放C触发</p>
+    <input @keyup.alt.67="clear">
+
+    <p>按下Alt + 释放任意键触发</p>
+    <input @keyup.alt="clear">
+
+    <p>按下Ctrl + enter时触发</p>
+    <input @keydown.ctrl.13="clear">
+
+</div>
+
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        },
+        methods:{
+            clear(){
+                alert("触发")
+            }
+        }
+    })
+
+</script>
+
+
+</body>
+</html>

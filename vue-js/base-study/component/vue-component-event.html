@@ -1,0 +1,40 @@
+<!--
+这个例子是为了看看$event是什么(就是原生DOM事件)
+
+在vue的使用中，有时也需要在内联语句处理器中访问'原生DOM事件'。可以用特殊变量 $event 把它传入方法：
+
+这也是v-model里的语法糖组成之一：
+<input type="text" :value="msg2" @input="msg2=$event.target.value">
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <button @click="getData($event)">按钮</button>
+</div>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        },
+        methods:{
+            getData(e){
+                console.log(e)
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>

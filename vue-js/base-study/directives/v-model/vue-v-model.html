@@ -11,6 +11,11 @@ components
 
 
 
+v-model是语法糖,实际操作:
+1.将输入框的值绑定到msg2变量上，这个是单向绑定，意味着改变msg2变量的值可以改变input的value，但是改变value不能改变msg2
+2.监听input事件（input输入框都有该事件，当输入内容时自动触发该事件），当输入框输入内容就单向改变msg2的值
+这样就实现了双向绑定。
+
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +30,7 @@ components
 <div id="app">
     <input v-model="msg">
     <input v-model="msg2">
+    <input type="text" :value="msg2" @input="msg2=$event.target.value"> <!--  v-model是语法糖,实际是这么写的 -->
     <p>hello {{msg+msg2}}</p><!--可以在{{}}里使用变量关系符-->
 </div>
 

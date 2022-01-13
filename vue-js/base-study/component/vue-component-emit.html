@@ -1,0 +1,72 @@
+<!--
+props 和 $emit:
+用过 Vue 技术栈开发项目过的开发者对这样一个组合肯定不会陌生，这种组件通信的方式是我们运用的非常多的一种。
+props 以单向数据流的形式可以很好的完成父子组件的通信。
+
+所谓单向数据流：就是数据只能通过 props 由父组件流向子组件，而子组件并不能通过修改 props 传过来的数据修改父组件的相应状态。
+至于为什么这样做，Vue 官网做出了解释：
+
+所有的 prop 都使得其父子 prop 之间形成了一个单向下行绑定：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。
+这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。
+额外的，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。
+这意味着你不应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在浏览器的控制台中发出警告。
+
+正因为这个特性，于是就有了对应的 emit。emit 用来触发当前实例上的事件。
+对此，我们可以在父组件自定义一个处理接受变化状态的逻辑，然后在子组件中如若相关的状态改变时，就触发父组件的逻辑处理事件。
+
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <input-price @add="handleSubmit" ></input-price>
+    <li v-for="item in list">
+        <span >{{item}}</span>
+    </li>
+</div>
+
+<script>
+
+
+
+    //全局组件，在这里是子组件
+    Vue.component('input-price',{
+        template:'<div><input type="text" v-model="price"> <button @click="handleSubmit">提交</button> </div> ',
+        data: function () {
+            return {
+                price: ''
+            }
+        },
+        methods: {
+            handleSubmit() {
+                console.log(this.price)
+                this.$emit('add',this.price)
+            }
+        }
+    })
+
+
+    new Vue({
+        el: "#app",
+        data: {
+            list: []
+        },
+        methods: {
+            handleSubmit(value) {
+                this.list.push(value)
+                this.$forceUpdate()
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

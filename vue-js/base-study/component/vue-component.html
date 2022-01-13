@@ -1,3 +1,14 @@
+<!--
+
+这个例子里的
+handleSubmit 是父传子
+handleDelete 是子传父
+
+
+this.$emit('事件的名称'，参数(可以是多个))
+@delete="handleDelete"  ===>  @事件的名称=父组件中事件。
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +20,7 @@
 <!--父组件通过属性的方式向子组件传递内容  比如  :index
     子组件通过发布,父组件通过订阅  比如this.$emit(发布)  @delete(订阅)
 -->
-<div id="root">
+<div id="app">
     <div>
         <input v-model="inputValue"/>
         <button @click="handleSubmit">提交</button>
@@ -44,11 +55,7 @@
 
 
     new Vue({
-        el: "#root",
-        //指定局部组件
-//        components:{
-//          'todo-item':TodoItem
-//        },
+        el: "#app",
         data: {
             inputValue: '',
             list: []

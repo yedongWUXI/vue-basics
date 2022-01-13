@@ -1,0 +1,75 @@
+<!--
+
+sync只是给大家伙提供了一种与父组件沟通的思路而已！
+所以在后面日子里,你如果只是 "单纯的在子组件当中修改父组件的某个数据时",
+建议使用sync,简单,快捷,有档次！真好！
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--父组件通过属性的方式向子组件传递内容  比如  :index
+    子组件通过发布,父组件通过订阅  比如this.$emit(发布)  @delete(订阅)
+-->
+<div id="app">
+<!--    <father @upIsShow="changeIsShow"></father>-->
+    <father></father>
+
+</div>
+
+<script>
+
+
+    //全局组件，在这里是子组件
+    Vue.component('child', {
+        template: '<div>我是一个子组件，我在红色的海洋里！<input type="button" value="点我隐身" @click="upIsShow"></div>',
+        methods:{
+            upIsShow(){
+                // this.$emit('upIsShow',false)
+                this.$emit('update:isShow',false)
+            }
+        }
+    })
+
+    //全局组件，在这里是父组件
+    Vue.component('father', {
+        template: '<div>\n' +
+            '        <input type="button" \n' +
+            '               value="我是父组件中的按钮" \n' +
+            '               @click="show">\n' +
+            // '        <child v-show="isShow" @upIsShow="changeIsShow"/>\n' +
+            // '        <child v-show="isShow" @update:isShow="changeIsShow"/>\n' +
+            // '        <child v-show="isShow" @update:isShow="function(bol){isShow=bol}"/>\n' +
+            // '        <child v-show="isShow" @update:isShow="(bol)=>isShow=bol"/>\n' +
+            '        <child v-show="isShow" :isShow.sync="isShow"/>\n' +//最终形态 其实就是上面的语法糖
+            '    </div>',
+        data: () => {
+            return {
+                isShow: false
+            }
+        },
+        methods: {
+            show() {
+                this.isShow = true;
+            },
+            changeIsShow(bol) {
+                this.isShow = bol;
+            }
+        }
+    })
+
+
+    new Vue({
+        el: "#app"
+    })
+</script>
+
+</body>
+</html>

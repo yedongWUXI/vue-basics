@@ -1,0 +1,68 @@
+<!--
+组件的双向绑定
+model：
+默认情况下，一个组件上的 v-model 会把 value 用作 prop 且把 input 用作 event
+但是一些输入类型比如单选框和复选框按钮可能想使用 value prop 来达到不同的目的。使用 model 选项可以回避这些情况产生的冲突。
+
+
+一般vue工程写组件 就是要在组件里写data,然后用v-model就实现组件里的双向绑定了。
+如果还要子传父就使用$emit
+
+
+
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <input-price @add="handleSubmit" ></input-price>
+    <li v-for="item in list">
+        <span >{{item}}</span>
+    </li>
+</div>
+
+<script>
+
+
+
+    //全局组件，在这里是子组件
+    Vue.component('input-price',{
+        template:'<div><input type="text" v-model="price"> <button @click="handleSubmit">提交</button> </div> ',
+        data: ()=> {
+            return {
+                price: ''
+            }
+        },
+        methods: {
+            handleSubmit() {
+                console.log(this.price)
+                this.$emit('add',this.price)
+            }
+        }
+    })
+
+
+    new Vue({
+        el: "#app",
+        data: {
+            list: []
+        },
+        methods: {
+            handleSubmit(value) {
+                this.list.push(value)
+                this.$forceUpdate()
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
