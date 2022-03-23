@@ -103,7 +103,7 @@ console.log(array.lastIndexOf(5))
  *     array : 可选 代表该数组
  * }
  *
- * @param thisArg  可选
+ * @param thisArg (外部定义的变量)  可选
  * 可以被 callBackFn 内部调用
  */
 
@@ -123,25 +123,72 @@ console.log(array.every((v, index, arr) => {
 
 
 /**
- * some
+ * some  返回boolean 是否有符合条件的
+ *
+ * @param callBackFn 必填
+ * {
+ *     value : 必填 代表每个元素
+ *     index : 可选 代表当前元素的index
+ *     array : 可选 代表该数组
+ * }
+ *
+ * @param thisArg (外部定义的变量)  可选
+ * 可以被 callBackFn 内部调用
+ *
  */
 
 console.log(array.some((v) => v === 1))
 
 /**
  * forEach
+ *
+ * @param callBackFn 必填
+ * {
+ *     value : 必填 代表每个元素
+ *     index : 可选 代表当前元素的index
+ *     array : 可选 代表该数组
+ * }
+ *
+ * @param thisArg (外部定义的变量)  可选
+ * 可以被 callBackFn 内部调用
+ *
  */
 
-array.forEach((v) => console.log(v))
+array.forEach((v, index, t) => {
+    console.log(v)
+    console.log(index)
+    console.log(t)
+})
 
 /**
  * map  处理每个元素 并返回处理后的array
+ *
+ * @param callBackFn 必填
+ * {
+ *     value : 必填 代表每个元素
+ *     index : 可选 代表当前元素的index
+ *     array : 可选 代表该数组
+ * }
+ *
+ * @param thisArg (外部定义的变量)  可选
+ * 可以被 callBackFn 内部调用
  */
 let mapNumbers = array.map((v) => v + 1);
 console.log(mapNumbers)
 
 /**
  * filter
+ *
+ * @param callBackFn 必填
+ * {
+ *     value : 必填 代表每个元素
+ *     index : 可选 代表当前元素的index
+ *     array : 可选 代表该数组
+ * }
+ *
+ * @param thisArg (外部定义的变量)  可选
+ * 可以被 callBackFn 内部调用
+ *
  */
 let filterNumbers = array.filter((v) => v > 1);
 console.log(filterNumbers)
@@ -189,3 +236,38 @@ let numberRight = array.reduceRight((v1, v2) => {
     return v1 + v2
 });
 console.log(numberRight)
+
+
+
+
+/**
+ 实际应用=============================================
+ */
+
+/**
+* 1.统计学生同名人数。  下列返回 { tom: 2, jim: 1, jack: 2 }
+* */
+
+let student = ['tom', 'jim', 'jack', 'tom', 'jack'];
+
+const countStudent = student.reduce((allStudent, name) => {
+    console.log(allStudent)
+    console.log(name)
+    if (name in allStudent) {
+        console.log(allStudent[name],"=======================")
+        allStudent[name] ++;
+    }
+    else {
+        allStudent[name] = 1;
+    }
+    return allStudent;
+}, {});
+
+console.log(countStudent)
+
+
+
+
+
+
+

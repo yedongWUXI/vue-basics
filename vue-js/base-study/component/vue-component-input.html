@@ -35,7 +35,8 @@ model：
 
     //全局组件，在这里是子组件
     Vue.component('input-price',{
-        template:'<div><input type="text" v-model="price"> <button @click="handleSubmit">提交</button> </div> ',
+        // template:'<div><input type="text" v-model="price"> <button @click="handleSubmit">提交</button> </div> ',
+        template:'<div><input type="text" :value="price" @input="price=$event.target.value"> <button @click="handleSubmit">提交</button> </div> ',
         data: ()=> {
             return {
                 price: ''

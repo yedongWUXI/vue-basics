@@ -20,12 +20,13 @@ const person = {
     age: '不详'
 }
 
-let test = {
+let {
     name,
     age
-} = person
+} = person//这个相当于 let name = person.name; let age = person.age
 
-console.log(test)
+
+console.log(name)
 
 
 

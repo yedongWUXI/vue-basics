@@ -52,6 +52,36 @@ components
 这边用了双向绑定  是为了 方便测试computed
 
 
+
+
+
+
+
+
+
+
+-----------------------------------
+
+
+
+
+vue中computed和methods区别:
+1.computed是响应式的，methods并非响应式。
+2.调用方式不一样，computed定义的成员像属性一样访问，methods定义的成员必须以函数形式调用。
+3.computed是带缓存的，只有其引用的响应式属性发生改变时才会重新计算，而methods里的函数在每次调用时都要执行。
+4.computed中的成员可以只定义一个函数作为只读属性，也可以定义get/set变成可读写属性，这点是methods中的成员做不到的
+
+在我们的实际开发中，有时很难去确定具体用computed还是methods，因为这两种方法最后的到的结果是一样的，但是他们的原理和用法却完全不同，
+比如：我们想去时刻监控数据的变化，在视图上显示不同的结果，当然这两中方法都可以实现这种效果，这个时候用computed就比较合理了，
+因为computed是可缓存的，只要数据层值不改变，computed就不会去改变，而且可缓存，如果数据层的值变了，computed就会实时更新到视图层上，所以说computed是响应式的。
+
+还有一个不同点就是在于computed是以对象的属性方式存在的，在视图层直接调用就可以得到值，例如：
+{{msg}}
+而methods必须以函数形式调用，例如：
+{{msg()}}
+可见，computed直接以对象属性方式调用，而methods必须要函数执行才可以得到结果。
+
+
 -->
 
 <!DOCTYPE html>
@@ -65,6 +95,7 @@ components
 <div id="app">
     <input type="text" v-model.number="firstNum">+<input type="text" v-model.number="lastNum"><br>
     <input type="text" v-model="sum">
+    <p>{{getSum()}}</p>
 </div>
 
 <script>
@@ -73,6 +104,11 @@ components
         data: {
             firstNum: null,
             lastNum: null,
+        },
+        methods:{
+          getSum(){
+              return this.firstNum + this.lastNum
+          }
         },
         computed: {
             sum: {

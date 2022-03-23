@@ -15,9 +15,10 @@ person.eyecolor="blue";
 console.log(person)
 
 //添加属性
-Object.prototype.hight = null
-person.hight = "180"
+Object.prototype.hight = "18"
+// person.hight = "180"
 console.log(person)
+console.log(person.prototype)
 
 
 /**
