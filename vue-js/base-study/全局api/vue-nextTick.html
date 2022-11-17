@@ -1,7 +1,26 @@
 <!--
 用法：
 
-在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后"立即使用"这个方法，获取更新后的 DOM。
+
+
+原理：
+在Vue 中更新DOM 是异步的
+
+Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新。
+在 Vue 的文档中，说明 Vue 是异步执行 DOM 更新的.
+
+具体来说，异步执行的运行机制如下。
+（1）所有同步任务都在主线程上执行，形成一个执行栈（execution context stack）。
+（2）主线程之外，还存在一个"任务队列"（task queue）。只要异步任务有了运行结果，就在"任务队列"之中放置一个事件。
+（3）一旦"执行栈"中的所有同步任务执行完毕，系统就会读取"任务队列"，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行。
+（4）主线程不断重复上面的第三步。
+
+
+使用场景：
+
+在数据变化后,需要使用随数据改变而改变的DOM结构的时候,这个操作都应该放进Vue.nextTick () 回调函数中。
+
 
 
 -->
@@ -38,11 +57,21 @@
         methods: {
             click() {
                 this.message = "修改后的值";
-                console.log(this.$refs.aa.innerText);   //that.$refs.aa获取指定DOM，输出：原始值
+                alert(this.$refs.aa.innerText);   //that.$refs.aa获取指定DOM，输出：原始值
 
-                this.$nextTick( () => {
-                    console.log(this.$refs.aa.innerText);  //输出：修改后的值
-                });
+
+                //这里执行等待 不用$.nextTick() 也是输出：修改后的值  证实了上面原理的队列说法
+                setTimeout(()=>{
+                    alert(this.$refs.aa.innerText);
+                },5000)
+
+
+
+
+                //立即执行$nextTick()就能立马在DOM中获取修改后的值
+                // this.$nextTick( () => {
+                //     console.log(this.$refs.aa.innerText);  //输出：修改后的值
+                // });
             }
         }
     })
