@@ -12,6 +12,12 @@
 
 只配合一个事件名使用 $emit
 
+
+
+
+语法糖:
+v-on  ==>  @
+
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -23,14 +29,14 @@
 <body>
 
 <div id="emit-example-simple">
-    <welcome-button v-on:welcome="sayHi"></welcome-button>
+    <welcome-button @welcome="sayHi"></welcome-button>
 </div>
 
 <script>
 
 
     Vue.component('welcome-button', {
-        template: `<button v-on:click="$emit('welcome')">
+        template: `<button @click="$emit('welcome')">
                     Click me to be welcomed
                    </button>
                   `
