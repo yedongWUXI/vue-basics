@@ -24,6 +24,11 @@
 
 
 <div id="app">
+    <div style="width: 300px;height: 300px; background-color: lightblue;" @click="blue()">
+        <div style="width: 200px;height: 200px; background-color: lightpink;" @click.stop="pink()">
+            如果没有.stop 点击粉色区域 会弹框蓝色
+        </div>
+    </div>
     <button @click.once="doThis" >点击触发一次</button>
 </div>
 
@@ -37,6 +42,12 @@
         methods:{
             doThis(){
                 alert("只会触发一次")
+            },
+            blue(){
+                alert('蓝色')
+            },
+            pink(){
+                alert('粉色')
             }
         }
     })
