@@ -1,0 +1,65 @@
+<!--
+在vue中，定义data可以有三种写法。
+
+三种写法的区别
+在简单的vue实例应用中，三种写法几乎是没有什么区别的，因为你定义的#yanggb对象不会被复用。
+
+但是如果是在组件应用的环境中，就可能会存在多个地方调用同一个组件的情况，为了不让多个地方的组件共享同一个data对象，只能返回函数。
+这个与JavaScript的作用域特性有关，函数自己拥有私有的作用域，函数之间的作用域相互独立，也就不会出现组件对数据的绑定出现交错的情况。
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="/vue-basics/vue.js"></script>
+</head>
+<body>
+
+
+<div id="app1">
+    {{ message }}
+</div>
+
+<div id="app2">
+    {{ message }}
+</div>
+
+<div id="app3">
+    {{ message }}
+</div>
+
+<script>
+
+    /**
+     * vue绑定 div
+     *
+     *
+     */
+    new Vue({
+        el: '#app1',
+        data: {
+            message: '第一种写法，对象'
+        }
+    })
+    new Vue({
+        el: '#app2',
+        data: {
+            message: '第二种写法，函数'
+        }
+    })
+    new Vue({
+        el: '#app3',
+        data: {
+            message: '第三种写法，函数，是第二种写法的ES6写法'
+        }
+    })
+
+
+</script>
+
+
+</body>
+</html>

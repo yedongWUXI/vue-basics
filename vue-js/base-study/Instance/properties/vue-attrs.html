@@ -1,0 +1,65 @@
+<!--
+实例 property
+vm.$attrs:
+一个包含了组件所有透传 attributes 的对象。
+
+透传 attributes：
+传递给一个子组件的attributes(不包括 被该子组件声明的props、emits的attribute 或者 v-on事件监听器)
+
+禁用 Attributes 继承:
+如果你不想要一个组件自动地继承 attribute，你可以在组件选项中设置 inheritAttrs: false。
+
+
+
+有几点需要注意：
+和 props 有所不同，透传 attributes 在 JavaScript 中保留了它们原始的大小写，所以像 foo-bar 这样的一个 attribute 需要通过 $attrs['foo-bar'] 来访问。
+像 @click 这样的一个 v-on 事件监听器将在此对象下被暴露为一个函数 $attrs.onClick。
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="/vue-basics/vue.js"></script>
+</head>
+<body>
+<div id="blog-post-demo">
+    <blog-post
+            v-for="post in posts"
+            v-bind:key="post.id"
+            v-bind:title="post.title"
+            v-bind:text="post.text"
+    ></blog-post>
+</div>
+<script>
+    /**
+     * 组件使用方式  1.创建组件  2.挂载组件
+     */
+    //1.创建组件
+    Vue.component('blog-post', {
+        // props: ['title','text'],   //如果把这里放开注释 那么$attrs 里就不会有这两个属性(具体看 “透传 attribute”的解释)
+        template: `<h3>{{ $attrs.title }},{{ $attrs.text }}</h3>`,
+        inheritAttrs: false, //如果加了这个属性 就必须显示的使用$attrs 不显示使用的不会默认继承过来
+        created: function () {
+            console.log(this.$attrs,44444444)  //查看传过来的 $attrs
+        }
+    })
+
+    //2.挂载组件
+    new Vue({
+        el: '#blog-post-demo',
+        data: {
+            posts: [
+                {id: 1, title: 'My journey with Vue',text: '2222'},
+                {id: 2, title: 'Blogging with Vue',text: '2222'},
+                {id: 3, title: 'Why Vue is so fun',text: '2222'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

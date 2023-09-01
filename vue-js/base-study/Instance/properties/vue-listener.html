@@ -1,0 +1,60 @@
+<!--
+实例 property
+vm.$listeners:
+$listeners包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。
+它可以通过在子组件中声明 v-on="$listeners" 传入子组件
+
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue入门</title>
+    <script src="/vue-basics/vue.js"></script>
+</head>
+<body>
+<div id="blog-post-demo">
+    <blog-post
+            v-for="post in posts"
+            v-bind:key="post.id"
+            v-bind:title="post.title"
+            v-bind:text="post.text"
+            @click="handleClick"
+    ></blog-post>
+</div>
+<script>
+    /**
+     * 组件使用方式  1.创建组件  2.挂载组件
+     */
+    //1.创建组件
+    Vue.component('blog-post', {
+        // template: `<button @click="$emit('click')">{{ $attrs.title }},{{ $attrs.text }}</button>`,
+        template: `<button v-on="$listeners">{{ $attrs.title }},{{ $attrs.text }}</button>`, //这里不使用$emit 用$listeners的传递特性代替
+        created: function () {
+            console.log(this.$listeners,44444444)  //查看传过来的 $listeners
+        }
+    })
+
+    //2.挂载组件
+    new Vue({
+        el: '#blog-post-demo',
+        data: {
+            posts: [
+                {id: 1, title: 'My journey with Vue',text: '2222'},
+                {id: 2, title: 'Blogging with Vue',text: '2222'},
+                {id: 3, title: 'Why Vue is so fun',text: '2222'}
+            ]
+        },
+        methods: {
+            handleClick(){
+                alert("子传父")
+            }
+        }
+    })
+</script>
+</body>
+</html>
