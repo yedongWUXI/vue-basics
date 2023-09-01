@@ -1,0 +1,183 @@
+---
+version: "3.4.0"
+provider:
+- pId: 21
+  pName: "门禁服务"
+  serviceId: "acs_acs"
+  enableAutoAddressing: true
+group:
+- groupId: 1370226804236746752
+  groupName: "一卡通应用服务"
+  description: "一卡通应用服务"
+  parentId: 0
+  weight: 18
+  status: "ONLINE"
+- groupId: 1370226804538736640
+  groupName: "门禁接口"
+  description: "门禁接口"
+  parentId: 1370226804236746752
+  weight: 31
+  status: "ONLINE"
+- groupId: 1370226804563902464
+  groupName: "门禁功能接口"
+  description: "门禁功能接口"
+  parentId: 1370226804538736640
+  weight: 32
+  status: "ONLINE"
+api:
+- apiName: "查询门禁点状态"
+  description: "该接口支持门常开、门常闭、门开和门闭四种操作引起的门状态获取。门常开操作，门会一直处于开状态，不会自动关闭，执行门闭操作，门才会关上\
+    ；门常闭操作，门会一直处于关毕状态，普通卡刷卡门不会被打开，执行门开操作，门会打开；门开操作，执行门打开动作，超过门打开时间，门会自动关上；门闭操作，执行关\
+    门动作，会立即把门关上。\n调用该接口，首先要通过获取门禁点资源列表的接口，获取到门禁点唯一编号，然后根据门禁点唯一编号进行门禁点状态状态查询。需要注意的是\
+    门通道必须接上门磁才能正常发送门状态变化通知，如果未接门磁，平台无法通过门状态变更通知来更新门状态。"
+  apiGroupInfo:
+    groupId: 1370226804563902464
+  apiProviderInfo:
+    pId: 21
+  protocol: "HTTPS"
+  path: "/api/acs/v1/door/states"
+  httpMethod: "POST"
+  authenticationMode: true
+  backendServiceType: "HTTP"
+  backendurl: "/acs/api/v1/door/doorStates"
+  backendHttpMethod: "POST"
+  backendTimeout: 10000
+  inParms:
+  - oder: 0
+    paramName: "userId"
+    paramPos: "Head"
+    paramType: "String"
+    nullable: true
+    defaultValue: "#userId#"
+    demo: "#userId#"
+    description: "用户ID"
+    backendParam:
+      beParmName: "userId"
+      beParmPos: "Head"
+  - paramName: "body"
+    paramPos: "Body"
+    paramType: "application/json"
+    nullable: true
+    model:
+      name: "Object"
+      type: "Object"
+      required: true
+      example: ""
+      description: ""
+      hidden: false
+      children:
+      - name: " doorIndexCodes "
+        type: "Array"
+        required: false
+        example: ""
+        description: "门禁点唯一标识，最大支持200个门禁点。[查询门禁点列表v2]@[软件产品-综合安防管理平台-API列表-一卡通应用服务\
+          -门禁管理#查询门禁点列表v2]接口获取返回参数doorIndexCode"
+        hidden: false
+        mappingName: " doorIndexCodes "
+        children:
+        - name: " doorIndexCodes [0]"
+          type: "String"
+          required: false
+          example: "1f276203e5234bdca08f7d99e1097bba"
+          description: "门禁点唯一标识"
+          hidden: false
+          mappingName: " doorIndexCodes [0]"
+          mappingPosition: "Body"
+    demo: "{\n    \"doorIndexCodes\": [\n        \"1f276203e5234bdca08f7d99e1097bba\"\
+      \n    ]\n}"
+    description: ""
+    backendParam:
+      beParmName: "body"
+      beParmPos: "Body"
+  beConsts: []
+  sysParms: []
+  response:
+    resType: "application/json"
+    resDemo: "{\n    \"code\": \"0\",\n    \"msg\": \"success\",\n    \"data\": {\n\
+      \        \"authDoorList\": [\n            {\n                \"doorIndexCode\"\
+      : \"e8e3ef5c149243abb4341124ab38fcfc\",\n                \"doorState\": 0\n\
+      \            }\n        ],\n        \"noAuthDoorIndexCodeList\": [\n       \
+      \     \"e8e3ef5c149243abb4341124ab38fcfc\"\n        ]\n    }\n}"
+    resDesc: ""
+    model:
+      name: "Object"
+      type: "Object"
+      required: true
+      example: ""
+      description: ""
+      hidden: false
+      children:
+      - name: "code"
+        type: "String"
+        required: false
+        example: "0"
+        description: "返回码，0 – 成功，其它参考[附录E.2.1 门禁管理错误码]@[软件产品-综合安防管理平台-附录-附录E 返回码说明\
+          -返回码说明#附录E.2.1 门禁管理错误码]"
+        hidden: false
+        mappingName: "code"
+      - name: "msg"
+        type: "String"
+        required: false
+        example: "success"
+        description: "返回描述"
+        hidden: false
+        mappingName: "msg"
+      - name: "data"
+        type: "Object"
+        required: false
+        example: ""
+        description: "返回数据"
+        hidden: false
+        mappingName: "data"
+        children:
+        - name: "authDoorList"
+          type: "Array"
+          required: false
+          example: ""
+          description: "有权限的门禁点状态集合"
+          hidden: false
+          mappingName: "authDoorList"
+          children:
+          - name: "authDoorList[0]"
+            type: "Object"
+            required: false
+            example: ""
+            description: "有权限的门禁点状态"
+            hidden: false
+            mappingName: "authDoorList[0]"
+            children:
+            - name: "doorIndexCode"
+              type: "String"
+              required: false
+              example: "e8e3ef5c149243abb4341124ab38fcfc"
+              description: "门禁点indexCode"
+              hidden: false
+              mappingName: "doorIndexCode"
+            - name: "doorState"
+              type: "Number"
+              required: false
+              example: "0"
+              description: "门状态，0 初始状态，1 开门状态，2关门状态，3离线状态"
+              hidden: false
+              mappingName: "doorState"
+        - name: "noAuthDoorIndexCodeList"
+          type: "Array"
+          required: false
+          example: ""
+          description: "没有权限的门禁点集合"
+          hidden: false
+          mappingName: "noAuthDoorIndexCodeList"
+          children:
+          - name: "noAuthDoorIndexCodeList[0]"
+            type: "String"
+            required: false
+            example: "e8e3ef5c149243abb4341124ab38fcfc"
+            description: "没有权限的门禁点"
+            hidden: false
+            mappingName: "noAuthDoorIndexCodeList[0]"
+  contentType: "application/json"
+  minVersion: "V1.3"
+  maxVersion: ""
+  weight: 0
+  status: "ONLINE"
+  extensionFilters: []

@@ -1,0 +1,35 @@
+<!--
+
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="/vue-basics/element.css">
+</head>
+<body>
+<div id="app">
+    <el-rate
+            v-model="value"
+            :texts="texts"
+            :max="max"
+            show-text>
+    </el-rate>
+</div>
+</body>
+<script src="/vue-basics/vue.js"></script>
+<script src="/vue-basics/element.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            value: null,
+            max: 5,
+            texts: ['很垃圾', '垃圾', '还行', '漂亮', '五星好评']
+        },
+    })
+</script>
+</html>

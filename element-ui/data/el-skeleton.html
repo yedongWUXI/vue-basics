@@ -1,0 +1,34 @@
+<!--
+骨架屏:
+骨架屏就是在页面数据尚未加载前先给用户展示出页面的大致结构，
+直到请求数据返回后再渲染页面，补充进需要显示的数据内容。
+常用于文章列表、动态列表页等相对比较规则的列表页面。
+
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="/vue-basics/element.css">
+</head>
+<body>
+<div id="app">
+    <el-skeleton :rows="6" animated />
+</div>
+</body>
+<script src="/vue-basics/vue.js"></script>
+<script src="/vue-basics/element.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data () {
+            return {
+
+            }
+        }
+    })
+</script>
+</html>

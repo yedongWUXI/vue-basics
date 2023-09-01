@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="/vue-basics/element.css">
+</head>
+<body>
+<div id="app">
+    <template>
+        <el-input v-model="input" placeholder="请输入内容" ></el-input>
+        <el-input
+                placeholder="请输入内容"
+                v-model="input"
+                :disabled="true">
+        </el-input>
+        <el-input
+                placeholder="请输入内容"
+                v-model="input"
+                clearable>
+        </el-input>
+
+    </template>
+</div>
+</body>
+<script src="/vue-basics/vue.js"></script>
+<script src="/vue-basics/element.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            input: ''
+        }
+    })
+</script>
+</html>

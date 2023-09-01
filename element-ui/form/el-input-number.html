@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="/vue-basics/element.css">
+</head>
+<body>
+<div id="app">
+    <template>
+        <el-input-number v-model="num" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
+    </template>
+</div>
+</body>
+<script src="/vue-basics/vue.js"></script>
+<script src="/vue-basics/element.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            num: 1
+        },
+        methods: {
+            handleChange(value) {
+                console.log(value);
+            }
+        }
+    })
+</script>
+</html>

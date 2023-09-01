@@ -1,0 +1,38 @@
+<!--
+开关
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="/vue-basics/element.css">
+</head>
+<body>
+<div id="app">
+    <el-switch
+            v-model="value"
+            @change="change"
+            active-color="#13ce66"
+            inactive-color="#ff4949">
+    </el-switch>
+</div>
+</body>
+<script src="/vue-basics/vue.js"></script>
+<script src="/vue-basics/element.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            value: true
+        },
+        methods: {
+            change() {
+                console.log(this.value)
+            }
+        }
+    })
+</script>
+</html>

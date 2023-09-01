@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="/vue-basics/element.css">
+</head>
+<body>
+<div id="app">
+    <div class="block">
+        <span class="demonstration">页数较少时的效果</span>
+        <el-pagination
+                layout="prev, pager, next"
+                :total="50">
+        </el-pagination>
+    </div>
+    <div class="block">
+        <span class="demonstration">大于 7 页时的效果</span>
+        <el-pagination
+                layout="prev, pager, next"
+                :total="1000">
+        </el-pagination>
+    </div>
+</div>
+</body>
+<script src="/vue-basics/vue.js"></script>
+<script src="/vue-basics/element.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {}
+        },
+    })
+</script>
+</html>

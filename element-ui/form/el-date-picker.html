@@ -1,0 +1,40 @@
+<!--
+日期选择器:
+type: date
+日期时间选择器:
+type: datetime
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="/vue-basics/element.css">
+</head>
+<body>
+<div id="app">
+    <el-date-picker
+            v-model="value1"
+            type="date"
+            placeholder="选择日期">
+    </el-date-picker>
+    <el-date-picker
+            v-model="value1"
+            type="datetime"
+            placeholder="选择日期">
+    </el-date-picker>
+</div>
+</body>
+<script src="/vue-basics/vue.js"></script>
+<script src="/vue-basics/element.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            value1: ''
+        },
+    })
+</script>
+</html>

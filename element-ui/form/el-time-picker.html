@@ -1,0 +1,45 @@
+<!--
+时间选择器
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="/vue-basics/element.css">
+</head>
+<body>
+<div id="app">
+    <template>
+        <el-time-picker
+                v-model="value1"
+                :picker-options="{
+      selectableRange: '18:30:00 - 20:30:00'
+    }"
+                placeholder="任意时间点">
+        </el-time-picker>
+        <el-time-picker
+                arrow-control
+                v-model="value2"
+                :picker-options="{
+      selectableRange: '18:30:00 - 20:30:00'
+    }"
+                placeholder="任意时间点">
+        </el-time-picker>
+    </template>
+</div>
+</body>
+<script src="/vue-basics/vue.js"></script>
+<script src="/vue-basics/element.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            //默认展示时间
+            value1: new Date(2016, 9, 10, 18, 40),
+            value2: new Date(2016, 9, 10, 18, 40)
+        },
+    })
+</script>
+</html>
